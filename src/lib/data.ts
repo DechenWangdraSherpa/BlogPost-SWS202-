@@ -1,15 +1,14 @@
 export const personalInfo = {
-  name: "Rishikesh S",
-  location: "Coimbatore, India",
-  email: "rkesh2003@gmail.com",
-  github: "https://github.com/rishikesh2003",
-  linkedin: "https://www.linkedin.com/in/rishikeshs/",
+  name: "Dechen Wangdra Sherpa",
+  location: "College of Science and Technology",
+  email: "02230281.cst@rub.edu.bt",
+  github: "https://github.com/DechenWangdraSherpa",
 };
 
 export const workExperience = [
   {
-    company: "Chatbyte GmbH",
-    location: "Remote",
+    company: "CST(Software-Engineer)",
+    location: "CST(Collage)",
     position: "Software Engineer",
     period: "Mar 2024 - Present",
     achievements: [
@@ -23,8 +22,8 @@ export const workExperience = [
     ],
   },
   {
-    company: "DevCrew",
-    location: "Coimbatore, India",
+    company: "eDruk",
+    location: "Thimphu, Bhutan",
     position: "Software Engineer",
     period: "Mar 2023 - Mar 2024",
     achievements: [
@@ -33,8 +32,8 @@ export const workExperience = [
     ],
   },
   {
-    company: "Phoenitags",
-    location: "Coimbatore, India",
+    company: "eDruk",
+    location: "Thimphu, Bhutan",
     position: "Software Engineering Intern",
     period: "Jan 2023 - Mar 2023",
     achievements: [
@@ -46,12 +45,12 @@ export const workExperience = [
 
 export const education = [
   {
-    institution: "Sri Krishna College of Engineering and Technology",
-    location: "Coimbatore, India",
-    degree: "B Tech Information Technology",
-    period: "Jun 2021 - Jun 2025",
+    institution: "College of Science and Technology",
+    location: "Kharbandi, Bhutan",
+    degree: "BE Software Engineer",
+    period: "Jun 2023 - Jun 2027",
     achievements: [
-      "President of the Department of Information Technology",
+      "President of the Department of Software Engineer",
       "G20 student delegate",
       "Organized multiple technical workshops and events",
       "Represented my college in multiple national and international hackathons and won.",
