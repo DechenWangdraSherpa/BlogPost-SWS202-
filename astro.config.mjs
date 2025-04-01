@@ -1,14 +1,28 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
+import { CONFIG } from "./src/config";
+import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 
-import react from "@astrojs/react";
+import playformCompress from "@playform/compress";
 
-// https://astro.build/config
 export default defineConfig({
-  vite: {
-      plugins: [tailwindcss()],
+  base: "/",
+  site: CONFIG.site_url,
+  integrations: [sitemap(), mdx(), playformCompress()],
+  markdown: {
+    shikiConfig: {
+      theme: "material-theme-darker",
+      langs: [],
+    },
   },
-
-  integrations: [react()]
+  content: {
+    collections: {
+      posts: {
+        schema: "src/content/config.ts#posts",
+      },
+      finds: {
+        schema: "src/content/config.ts#finds",
+      },
+    },
+  },
 });

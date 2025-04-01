@@ -1,194 +1,75 @@
-# Modern Portfolio Template
+# Glyptodon - Personal Astro Theme
 
-A sleek, responsive portfolio website built with Astro, React, and Tailwind CSS, featuring modern animations and glassmorphism effects.
+A clean and modern, eco-friendly personal website theme built with [Astro](https://www.astro.build], using fluid type and grid sizing for smooth size transitions.
 
-![Portfolio Screenshot](https://github.com/user-attachments/assets/4f2466f1-1ebe-4cbe-857c-40eccd63c384)
+All dummy text is created by Claude AI to get a sense for what it looks like with content.
+
+To see it in action, I use it for my own website at [www.timeaton.dev](https://www.timeaton.dev). Feel free to use and modify for your needs!
+
+## Screenshots
+![glyptodon-dark min](https://github.com/user-attachments/assets/49a9f63a-8002-4493-bf91-a54552c94998)
+---
+![glyptodon-post min](https://github.com/user-attachments/assets/08943779-5cc6-45bd-b396-dda19a0350bf)
+---
+![glyptodon-light min](https://github.com/user-attachments/assets/0b51d6e3-36e2-4e73-85d4-3c4fc3d6dbd8)
 
 ## Features
 
-- ✨ **Modern Design**: Clean, professional layout with glassmorphism effects
-- 🎨 **Animations**: Smooth transitions and interactive elements using Framer Motion
-- 🌙 **Dark/Light Mode**: Seamless theme switching with system preference detection
-- 📱 **Fully Responsive**: Optimized for all devices and screen sizes
-- 🚀 **Performance Focused**: Built with Astro for excellent loading speeds
-- 🧩 **Modular Structure**: Easy to customize and extend
-- 🔍 **SEO Friendly**: Structured content for better search engine visibility
-
-## Demo
-
-[Live Demo](https://rishilol.vercel.app/)
+- Responsive design
+- Scores A or A+ (depending on hosting and your images) on [Accessify](https://www.accessify.com/) and [Ecograder](https://ecograder.com/)
+- Clean and minimal
+- Fluid typography
+- Dark and light mode (chosen by user's system preference)
+- About page
+- Now page (inspired by [nownownow.com](https://nownownow.com))
+- Microblog for found links (Today I Found...)
+- Blog for personal projects
 
 ## Getting Started
 
-### Prerequisites
+1. Install dependencies:
 
-- Node.js (v18 or higher recommended)
-- npm or yarn or bun
+```bash
+npm install
+```
 
-### Installation
+2. Start the development server:
 
-1. Clone the repository:
+```bash
+npm run dev
+```
 
-   ```bash
-   git clone https://github.com/yourusername/my-portfolio.git
-   cd my-portfolio
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   bun install
-   ```
-
-3. Start the development server:
-
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   bun dev
-   ```
-
-4. Open your browser and visit `http://localhost:4321`
-
-## Customizing the Portfolio
-
-This portfolio is designed to be easily customizable mainly by editing the data in the `src/lib/data.ts` file:
-
-1. **Personal Information**: Update your name, location, email, and social links
-
-   ```typescript
-   export const personalInfo = {
-     name: "Your Name",
-     location: "Your Location",
-     email: "your.email@example.com",
-     github: "https://github.com/yourusername",
-     linkedin: "https://www.linkedin.com/in/yourusername/",
-   };
-   ```
-
-2. **Work Experience**: Add or modify your professional experience
-
-   ```typescript
-   export const workExperience = [
-     {
-       company: "Company Name",
-       location: "Location",
-       position: "Your Position",
-       period: "Start Date - End Date",
-       achievements: [
-         "Achievement 1",
-         "Achievement 2",
-         // ...
-       ],
-     },
-     // Add more work experiences
-   ];
-   ```
-
-3. **Education**: Update your educational background
-
-   ```typescript
-   export const education = [
-     {
-       institution: "University Name",
-       location: "Location",
-       degree: "Your Degree",
-       period: "Start Date - End Date",
-       achievements: [
-         "Achievement 1",
-         "Achievement 2",
-         // ...
-       ],
-     },
-     // Add more education entries
-   ];
-   ```
-
-4. **Skills**: Customize your skills by category
-
-   ```typescript
-   export const skills = {
-     programmingLanguages: ["Skill 1", "Skill 2"],
-     frontendDevelopment: ["Skill 1", "Skill 2"],
-     // Other skill categories
-   };
-   ```
-
-5. **Projects**: Showcase your projects
-
-   ```typescript
-   export const projects = [
-     {
-       title: "Project Name",
-       github: "https://github.com/yourusername/project",
-       description: [
-         "Description point 1",
-         "Description point 2",
-         // ...
-       ],
-     },
-     // Add more projects
-   ];
-   ```
-
-6. **Awards**: Highlight your achievements
-   ```typescript
-   export const awards = [
-     {
-       name: "Award Name",
-       issuer: "Issuer",
-       date: "Date",
-       type: "Type",
-       position: "Position",
-     },
-     // Add more awards
-   ];
-   ```
-
-## Building for Production
-
-To create a production build:
+3. Build for production:
 
 ```bash
 npm run build
-# or
-yarn build
-# or
-bun run build
 ```
 
-To preview the production build locally:
+## Customization
 
-```bash
-npm run preview
-# or
-yarn preview
-```
+- Add your own avatar in the `public/` directory
+- Edit `src/config.ts` to use your website, name, and description
+- Edit pages in `src/pages/`
+- Modify the layout in `src/layouts/Layout.astro`
+- Update styles in the respective component files
+- Make your own favicons with https://realfavicongenerator.net/
 
-## Deployment
+## Colors
 
-This portfolio can be deployed to any static site hosting service like Vercel, Netlify, GitHub Pages, etc.
+The colors were chosen using several tools to insure accessibility and contrast. The colors are all set using variables for dark and light in the global.css file. Personally, I created the palletes and gradients using these tools:
+
+- https://colorffy.com/color-scheme-generator
+- https://www.learnui.design/tools/accessible-color-generator.html
+- https://colorffy.com/mesh-gradient-generator (for the background gradient)
+
+## Credits
+
+Built by Tim Eaton - [timeaton.dev](https://timeaton.dev).
+
+Anonymous Avatar by <a href="/photographer/maniskis12-68558">maniskis12</a> on <a href="/">Freeimages.com</a>
+
+All dummy text and posts generated with Claude AI.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Copyright
-
-© 2025 Rishikesh S. All rights reserved.
-
-This template is designed to be used as a starting point for your personal portfolio. You are free to use it for your own portfolio by simply modifying the `data.ts` file and making any design adjustments. However, please include attribution to the original author when using this template.
-
-## Acknowledgments
-
-- [Astro](https://astro.build/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/)
+MIT
