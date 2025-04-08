@@ -1,0 +1,705 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>OSINT(Open-Source Intelligence) BOB(Bank Of Bhutan)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-transparentGray { background-color: undefined; }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1b8c5e67-1d17-802b-99d4-fc92bde24929" class="page sans"><header><h1 class="page-title">OSINT(Open-Source Intelligence) BOB(Bank Of Bhutan)</h1><p class="page-description"></p></header><div class="page-body"><h1 id="1b8c5e67-1d17-8099-a2dd-d86f3643dced" class="">1. Introduction</h1><h3 id="1b8c5e67-1d17-801a-9b57-d5d7f40d4762" class="">Objective:</h3><p id="1b8c5e67-1d17-80f6-a047-d19f2c9925c1" class="">This report provides an Open-Sourve Intellignece (OSINT) analysis of Bank Of Bhutan(BOB), identifying its digital footprint, potential vulnerabilities, and risks associated with public information exposure. </p><p id="1b8c5e67-1d17-806d-a3f4-ff95535e5b4c" class="">The scope includes examining website security, social media presence, data breaches, employee exposure, and third-party risks.</p><p id="1b8c5e67-1d17-80c5-a38a-f0be7b75db65" class="">Tools used:Google Dorking, WHOIS lookup, and social media analysis.</p><p id="1b8c5e67-1d17-80a7-aef2-e6db84bcfb54" class="">
+</p><h3 id="1b8c5e67-1d17-80fb-95bf-dea45b47c8ea" class="">Target:</h3><p id="1b8c5e67-1d17-808c-bd03-c0c03ab23839" class=""><em>Bank Name:</em> Bank of Bhutan(BOB)</p><p id="1b9c5e67-1d17-8002-8ae9-e24ef6564c0b" class="">
+</p><p id="1b8c5e67-1d17-80fc-95c4-c8bd32d4f93f" class=""><em>Background:</em></p><p id="1b9c5e67-1d17-80c6-9a59-e26841042bfd" class="">The Bank of Bhutan(BoB) is the largest and oldest commercial bank in Bhutan, established under a royal bharter in May 1968. Initially, BoB served as the country’s only centrak bank until the establishment of the Royal Monetary Authority of Bhutan (RMA) in 1982. It is now registered under the Companies Act of Bhutan, 2000, operating as a public sector commercial bank.</p><p id="1b9c5e67-1d17-8017-921d-e7390c46f8f3" class="">Over the years, BoB has expanded its presence across the country, maintaining over 47 branches in all Dzongkhags (districts). It was a pioneer in introducing ATMs, Point of Sales (PoS) terminals, and Internet Banking services in Bhutan, significantly modernizing the banking sector.</p><p id="1b9c5e67-1d17-8055-a77c-fcc7f0e62a6a" class="">As of July 1, 2017, the bank&#x27;s total assets were valued at 47.7 million Ngultrum (approximately USD 750,000), with a major portion allocated to consumer loans and mortgages. BoB holds a dominant position in Bhutan&#x27;s banking industry, accounting for 41% of total deposits and 32% of total loans in the national economy.</p><p id="1b9c5e67-1d17-801a-a632-ee1a52ff5ad1" class="">
+</p><p id="1b8c5e67-1d17-809f-bbb5-cdd37ba19e39" class="">Reason for Selection: </p><p id="1b9c5e67-1d17-805e-aeec-cf0231f0535d" class="">BoB being a high-profile bank, it presents a valuable case study in understanding how public information can expose cybersecurity risks.</p><h1 id="1b9c5e67-1d17-8012-8311-dfe6581bf28b" class="">2. Information Gathering</h1><h2 id="1b9c5e67-1d17-80e0-b984-dbc604faf1cc" class="">2.1 Digital Footprint</h2><p id="1b9c5e67-1d17-80c3-b4ca-f5bd550b6119" class="">Website: <a href="https://www.bob.bt/">www.bob.bt</a></p><h3 id="1b9c5e67-1d17-80ce-9463-d542bc1ec0d8" class="">Subdomains identified: </h3><p id="1b9c5e67-1d17-8023-9051-c17076ef0f25" class="">To find these subdomains I used (site:*bob.bt), there are many subdomains but I chose couple of subdomain which I assume that the information are sensitive and could be used by red-hackers. </p><ul id="1b9c5e67-1d17-8057-8a31-ca991d2a3c7c" class="bulleted-list"><li style="list-style-type:disc"><a href="http://account.bob.bt">account.bob.bt</a> (BoBaccount - Online Account Opening)</li></ul><ul id="1b9c5e67-1d17-8085-ace4-d5455345b49c" class="bulleted-list"><li style="list-style-type:disc"><a href="http://bob.bt/vendor-registration">bob.bt/vendor-registration</a> (Vendor registration)</li></ul><ul id="1b9c5e67-1d17-80ba-9ce9-de7d97ff4bde" class="bulleted-list"><li style="list-style-type:disc"><a href="http://bob.bt/auction-announcement">bob.bt/auction-announcement</a> (Auction Notice- Dec 6th, 2024)</li></ul><figure id="1b9c5e67-1d17-80c9-b5d5-ebaf4c818303" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-45-40.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-45-40.png"/></a></figure><ul id="1b9c5e67-1d17-8009-8791-e1fe919716b1" class="bulleted-list"><li style="list-style-type:disc"><a href="http://bob.bt/5147-2">bob.bt/5147-2</a> (Final Selected Candidates- Post of Customer Experience Representative and EPABX)</li></ul><figure id="1b9c5e67-1d17-801e-845c-fe1e984a873f" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-49-44.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-49-44.png"/></a></figure><ul id="1b9c5e67-1d17-8084-b9ab-c52d97ffd795" class="bulleted-list"><li style="list-style-type:disc"><a href="http://bob.bt/disclaimer/disclaimer">bob.bt/disclaimer/disclaimer</a> (Disclaimer) </li></ul><figure id="1b9c5e67-1d17-80e5-820b-c514e90ef140" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-51-53.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-51-53.png"/></a></figure><ul id="1b9c5e67-1d17-80b8-953b-e7456dfde293" class="bulleted-list"><li style="list-style-type:disc"><a href="http://bob.bt/tender-amendment">bob.bt/tender-amendment</a> (Tender Amendment)</li></ul><figure id="1b9c5e67-1d17-8057-94bb-fe07b498850e" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-54-35.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-54-35.png"/></a></figure><ul id="1b9c5e67-1d17-8044-8535-fdfb51a1fb47" class="bulleted-list"><li style="list-style-type:disc"><a href="http://bob.bt/PIT_Certificates">bob.bt/PIT_Certificates</a> (Loan Interest Certificate for PIT)</li></ul><figure id="1b9c5e67-1d17-8008-9cf6-cdf5f26f0275" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-55-35.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_13-55-35.png"/></a></figure><ul id="1b9c5e67-1d17-8012-87af-f98b41ca0602" class="bulleted-list"><li style="list-style-type:disc"><a href="http://internetbanking.bob.bt/bobcorporate/#">internetbanking.bob.bt/bobcorporate/#</a>  (Corporate Internet Banking)</li></ul><figure id="1b9c5e67-1d17-80d6-a71a-dc497b42ebb0" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_14-02-41.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_14-02-41.png"/></a></figure><p id="1b9c5e67-1d17-809c-877d-d819b2432700" class="">
+</p><h3 id="1b9c5e67-1d17-805c-b996-dec67910508b" class="">Using Shoden:</h3><p id="1b9c5e67-1d17-80e2-9c46-d4216fb2299d" class="">I couldn’t find anything from using the shoden tool. The reasons could be:</p><ul id="1b9c5e67-1d17-80bf-98f5-ff0a77757cd7" class="bulleted-list"><li style="list-style-type:disc">BoB uses Cloudflare or a Firewall </li></ul><ul id="1b9c5e67-1d17-8009-a00c-e7c62aa4334f" class="bulleted-list"><li style="list-style-type:disc">IP-Based Blocking </li></ul><ul id="1b9c5e67-1d17-80af-b9b0-ca2a443063d8" class="bulleted-list"><li style="list-style-type:disc">Uses private IPs - If the systems are internal, they won’t show up on Shoden.</li></ul><p id="1b9c5e67-1d17-80cf-9810-c485d9004292" class="">
+</p><h3 id="1b9c5e67-1d17-8055-b8cd-c466b37f79ce" class="">WHOIS Data:</h3><figure id="1b9c5e67-1d17-80a7-91d4-fb9c4fde5d3b" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_14-09-25.png"><img style="width:529.9666748046875px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_14-09-25.png"/></a></figure><figure id="1b9c5e67-1d17-802e-8bca-e50d77979b51" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_14-09-41.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_14-09-41.png"/></a></figure><p id="1b9c5e67-1d17-802b-a6a7-f3038ffd17a2" class="block-color-default_background">
+</p><p id="1b9c5e67-1d17-80fd-b6a9-df2e9d02a33d" class="block-color-default_background">Could not find any information from here. </p><h2 id="1b9c5e67-1d17-8099-831a-eadb27cc32d9" class="">2.2 Social Media Presence</h2><h3 id="1b9c5e67-1d17-80af-860d-c58fbed6b8ff" class="">Linkedin:</h3><ul id="1b9c5e67-1d17-8080-8c14-c029d84311cd" class="bulleted-list"><li style="list-style-type:disc">Ceo of BoB is Mr. Dorji Kadin</li></ul><figure id="1b9c5e67-1d17-80b0-b0e7-ca836304d054" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image.png"/></a></figure><p id="1b9c5e67-1d17-80ab-bce8-c1c653a9ab16" class="block-color-default_background">
+</p><ul id="1b9c5e67-1d17-8022-9015-ff91c7897261" class="block-color-default_background bulleted-list"><li style="list-style-type:disc">Picture of 14 new employee who recently joined BoB. </li></ul><figure id="1b9c5e67-1d17-804e-acdf-fabd5c38a896" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%201.png"><img style="width:529.9833374023438px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%201.png"/></a></figure><p id="1b9c5e67-1d17-8039-93d4-d657f6edb051" class="block-color-default_background">
+</p><ul id="1b9c5e67-1d17-80c5-b2c5-dac273dcca51" class="block-color-default_background bulleted-list"><li style="list-style-type:disc">Vacancy announcement of four months earlier.</li></ul><figure id="1b9c5e67-1d17-8084-824a-f3f77135061d" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%202.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%202.png"/></a></figure><p id="1b9c5e67-1d17-800c-9933-e84249d5fcea" class="block-color-default_background">
+</p><ul id="1b9c5e67-1d17-80b9-8e5f-fdbfce081d2d" class="block-color-default_background bulleted-list"><li style="list-style-type:disc">Digital Payments Security training at BoB was led by  <a href="https://www.linkedin.com/in/mufaddal-taskin-42824b13/">Mufaddal Taskin</a> from the <a href="https://www.linkedin.com/in/institute-of-information-security-681301a3/">INSTITUTE OF INFORMATION SECURITY</a>. </li></ul><figure id="1b9c5e67-1d17-80d1-8f33-f62adf1ce76f" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%203.png"><img style="width:400px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%203.png"/></a></figure><p id="1b9c5e67-1d17-80f2-9795-d51c22815b0d" class="block-color-default_background"><strong>Risk:</strong> The attackers can get information about the CEO of the company and could be further exploited, and attackers could do phishing attack. </p><p id="1b9c5e67-1d17-80d6-968c-cb06998acd34" class="">
+</p><h2 id="1b9c5e67-1d17-8098-9979-c29096b339d7" class="block-color-default_background">2.3 Employee Information:</h2><figure id="1b9c5e67-1d17-80b8-8c37-ff57752ed440" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%204.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%204.png"/></a></figure><p id="1b9c5e67-1d17-80a0-bb9b-f5ee8bf35dc5" class="">From the linkedin I was able to find the profile images of the employers of BoB company. I would say all employers profile is given, which I took few of them. </p><figure id="1b9c5e67-1d17-8069-b8be-e55e007f8a20" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%205.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%205.png"/></a></figure><p id="1b9c5e67-1d17-80bf-8a44-ef83d9d24656" class="block-color-default_background">The person in the middle in second photo has the name instead of his position. <br/>From this, I was able to get his information. <br/></p><figure id="1b9c5e67-1d17-80a9-8ae0-ee5e7d52966e" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%206.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%206.png"/></a></figure><p id="1b9c5e67-1d17-800f-b11c-f82bcd1da93b" class="block-color-default_background">That person is database administrator of BoB. </p><figure id="1b9c5e67-1d17-8054-a286-cc0e53923ae8" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%207.png"><img style="width:322px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%207.png"/></a></figure><p id="1b9c5e67-1d17-80c1-bd6a-e8dac54b6303" class="block-color-default_background">
+</p><p id="1b9c5e67-1d17-80b3-9588-dd29ba6b329a" class="block-color-default_background">With using the method, {bob.bt site:linkedin.com} as I already know that there are information leaked about the employees. So, I was able to find many information, name and the role of the employees working in BoB.</p><figure id="1b9c5e67-1d17-8057-a868-ffa24cfe9f5e" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%208.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%208.png"/></a></figure><figure id="1b9c5e67-1d17-80bb-9838-ce58b3e8755e" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%209.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%209.png"/></a></figure><p id="1b9c5e67-1d17-8032-b653-dba483e8fcb8" class="block-color-default_background">There were many information about the employees</p><p id="1b9c5e67-1d17-808f-8180-c7e25150adc0" class="block-color-default_background">
+</p><p id="1b9c5e67-1d17-807b-bcf4-e0897b444a00" class="block-color-default_background"><strong>Risk:</strong> Employees interacting on LinkedIn openly disclose their job roles which could be exploited by attackers. </p><p id="1b9c5e67-1d17-8033-8607-e30e25e3e01c" class="block-color-default_background">
+</p><h2 id="1b9c5e67-1d17-8026-b2fe-cc91807e627d" class="block-color-default_background">2.4 Leaked Information</h2><p id="1b9c5e67-1d17-80bb-b766-f8ed13202859" class="">Using the method, {site:github.com bob.bt} I was able to find the github for go-bob.</p><figure id="1b9c5e67-1d17-80b1-8456-fd99cb01b66c" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2010.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2010.png"/></a></figure><p id="1b9c5e67-1d17-8017-a9bb-f70bed3d6736" class="block-color-default_background">
+</p><p id="1b9c5e67-1d17-801c-ad95-c496896617ee" class="block-color-default_background">From here, I went through the profile of the person and I was able to find couple of repositories from 33 of it which had go as initial-name which I assume that it could be related to go-bob.</p><figure id="1b9c5e67-1d17-808c-8cc1-ee80265ae0be" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2011.png"><img style="width:709.9833374023438px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2011.png"/></a></figure><p id="1b9c5e67-1d17-8062-a8cf-db8c85da9c02" class="block-color-default_background">
+</p><p id="1b9c5e67-1d17-80b0-98fb-ef7c9fcc0a67" class="block-color-default_background"><strong>Risk:</strong> Attacker could go through the code of the app and could figure out how the app works. Which would make easier for the hackers. </p><p id="1b9c5e67-1d17-8008-951a-c9f0a07691de" class="">
+</p><h2 id="1b9c5e67-1d17-8025-a3a4-e068909b6381" class="">2.5 Infrastructure Analysis</h2><ul id="1b9c5e67-1d17-80b7-9715-c042d7d9e8e4" class="bulleted-list"><li style="list-style-type:disc">Security Headers Missing:</li></ul><figure id="1b9c5e67-1d17-805d-b094-cffd57d122e6" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2012.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2012.png"/></a></figure><p id="1b9c5e67-1d17-8038-89b3-f4179bec4458" class="block-color-default_background">
+</p><ol type="1" id="1b9c5e67-1d17-807a-97a1-d9f407d2b839" class="block-color-default_background numbered-list" start="1"><li>Strict-Transport-Security</li></ol><ol type="1" id="1b9c5e67-1d17-80f7-af51-eed4f6fbbcef" class="numbered-list" start="2"><li>Content-Security-Policy </li></ol><ol type="1" id="1b9c5e67-1d17-8013-90bb-e63742c91f8a" class="numbered-list" start="3"><li>X-Frame-Options </li></ol><ol type="1" id="1b9c5e67-1d17-800d-9ac4-e6c4e5b8e560" class="numbered-list" start="4"><li>X-Content-Type-Options</li></ol><ol type="1" id="1b9c5e67-1d17-8044-946b-e9d928454663" class="numbered-list" start="5"><li>Referrer-Policy </li></ol><ol type="1" id="1b9c5e67-1d17-803c-a651-fa46b70424f4" class="numbered-list" start="6"><li>Permissions-Policy</li></ol><figure id="1b9c5e67-1d17-801a-9edc-fc74d40c93d9" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_22-21-55.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/Screenshot_From_2025-03-17_22-21-55.png"/></a></figure><figure id="1b9c5e67-1d17-8061-99f4-e52db9d6153f" class="image"><a href="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2013.png"><img style="width:530px" src="OSINT(Open-Source%20Intelligence)%20BOB(Bank%20Of%20Bhutan%201b8c5e671d17802b99d4fc92bde24929/image%2013.png"/></a></figure><p id="1b9c5e67-1d17-80a3-85a5-c19a0398ea53" class="block-color-default_background">
+</p><p id="1b9c5e67-1d17-8028-b6bd-db141e5abbe3" class="block-color-default_background">Risk: Without these security headers, the bank is vulnerable to MITM attacks, XSS injections, clickjacking, MIME-type sniffing, data leaks, and unauthorized access to user devices. This can lead to credential theft, financial fraud, malware execution, privacy breaches, and reputational damage. </p><p id="1b9c5e67-1d17-800d-b09d-d9611b7dd3f5" class="">
+</p><h1 id="1b9c5e67-1d17-802b-ad8b-cc4ac5ae84cc" class="">Conclusion</h1><p id="1b9c5e67-1d17-80c0-9881-d3ab3e702e69" class="">The OSINT investigation of BankOfBhutan revealed several security risks, including exposed employee credentials,  and outdated infrastructure. While the bank has strong cloud-based security, there are still areas that need to be improved, particularly in social media security awareness and infrastructure. </p><h1 id="1b9c5e67-1d17-80fe-858d-f7d371646eab" class="block-color-default_background">Reference and Appendices</h1><ul id="1b9c5e67-1d17-8081-a340-f1a5f1442214" class="bulleted-list"><li style="list-style-type:disc">Bank of Bhutan. (BoB). Wilipedia. Retrieved March 14, 2025, from<p id="1b9c5e67-1d17-80a9-8ab9-ed687330ec4a" class="">    <a href="https://en.wikipedia.org/wiki/Bank_of_Bhutan">https://en.wikipedia.org/wiki/Bank_of_Bhutan</a></p></li></ul><ul id="1b9c5e67-1d17-80cd-85ea-d75f30a4c10a" class="bulleted-list"><li style="list-style-type:disc">Sources:<ul id="1b9c5e67-1d17-80d8-b057-d653709ff3c1" class="bulleted-list"><li style="list-style-type:circle">BankOfBhuan official website ( <a href="http://bob.bt">bob.bt</a> ) </li></ul><ul id="1b9c5e67-1d17-80a1-b0dd-c1dd87da7883" class="bulleted-list"><li style="list-style-type:circle">LinkedIn company page (<a href="https://www.linkedin.com/company/bankofbhutan/people/?viewAsMember=true">LinkedIn URL</a>) </li></ul></li></ul><ul id="1b9c5e67-1d17-8021-83e7-ffefee1485c3" class="bulleted-list"><li style="list-style-type:disc">Tools: <ul id="1b9c5e67-1d17-8050-8bfc-f95d93973902" class="bulleted-list"><li style="list-style-type:circle">Google Dorking (<a href="https://www.imperva.com/learn/application-security/google-dorking-hacking/">LearningCenter</a>)</li></ul><ul id="1b9c5e67-1d17-8070-a557-d2ca9c01c9f4" class="bulleted-list"><li style="list-style-type:circle">Security Headers (<a href="https://securityheaders.com/">Security Headers</a>)</li></ul><ul id="1b9c5e67-1d17-80c5-8e6e-e93eb4400b0f" class="bulleted-list"><li style="list-style-type:circle">ChatGPT</li></ul></li></ul><p id="1b9c5e67-1d17-809c-882b-dd1100cdb6fe" class="">
+</p><h3 id="1b9c5e67-1d17-80a5-a4aa-ef223b76ec8f" class="">Appendices:</h3><ul id="1b9c5e67-1d17-80e3-80fd-cdc91846434c" class="bulleted-list"><li style="list-style-type:disc">Screenshots of OSINT findings.</li></ul><p id="1b9c5e67-1d17-8038-8778-cebb1ee77779" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

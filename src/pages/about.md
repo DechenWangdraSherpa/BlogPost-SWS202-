@@ -4,11 +4,11 @@ title: "About"
 description: "About Me"
 ---
 
-# About Jane
+# About DWangShers
 
 ---
 
-I'm a graphic designer who believes design is more than just pretty pictures—it's visual storytelling with purpose.
+I'm 
 
 ## My Journey
 
