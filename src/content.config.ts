@@ -1,41 +1,65 @@
 import { defineCollection, z } from "astro:content";
-
 import { glob } from "astro/loaders";
 
-import { CONFIG } from "config";
-
-export enum FoundType {
-  video = "video",
-  article = "article",
-  book = "book",
-  website = "website",
+function removeDupsAndLowerCase(array: string[]) {
+	return [...new Set(array.map((str) => str.toLowerCase()))];
 }
 
-const posts = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/posts" }),
-  schema: z.object({
-    title: z.string(),
-    slug: z.string(),
-    author: z.string().default(CONFIG.author),
-    externalUrl: z.string().optional(),
-    description: z.string(),
-    category: z.string(),
-    publicationDate: z.coerce.date(),
-    public: z.boolean().default(true),
-    editDate: z.coerce.date().optional(),
-  }),
+const baseSchema = z.object({
+	title: z.string().max(60),
 });
 
-const finds = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/finds" }),
-  schema: z.object({
-    title: z.string(),
-    link: z.string(),
-    description: z.string(),
-    type: z.nativeEnum(FoundType),
-    publicationDate: z.coerce.date(),
-    public: z.boolean().default(true),
-  }),
+const post = defineCollection({
+	loader: glob({ base: "./src/content/post", pattern: "**/*.{md,mdx}" }),
+	schema: ({ image }) =>
+		baseSchema.extend({
+			description: z.string(),
+			coverImage: z
+				.object({
+					alt: z.string(),
+					src: image(),
+				})
+				.optional(),
+			draft: z.boolean().default(false),
+			ogImage: z.string().optional(),
+			tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+			publishDate: z
+				.string()
+				.or(z.date())
+				.transform((val) => new Date(val)),
+			updatedDate: z
+				.string()
+				.optional()
+				.transform((str) => (str ? new Date(str) : undefined)),
+			// Series
+			seriesId: z.string().optional(), // Поле для связи с серией
+      		orderInSeries: z.number().optional(), // Опционально: для сортировки в серии
+			// End
+		}),
 });
 
-export const collections = { posts, finds };
+const note = defineCollection({
+	loader: glob({ base: "./src/content/note", pattern: "**/*.{md,mdx}" }),
+	schema: baseSchema.extend({
+		description: z.string().optional(),
+		publishDate: z
+			.string()
+			.datetime({ offset: true }) // Ensures ISO 8601 format with offsets allowed (e.g. "2024-01-01T00:00:00Z" and "2024-01-01T00:00:00+02:00")
+			.transform((val) => new Date(val)),
+	}),
+});
+
+// Series
+const series = defineCollection({
+	loader: glob({ base: "./src/content/series", pattern: "**/*.{md,mdx}" }),
+	schema: z.object({
+		id: z.string(),
+		title: z.string(),
+		description: z.string(),
+		featured: z.boolean().default(false), // Пометка для популярных серий
+	}),
+});
+// End
+
+// Series
+export const collections = { post, note, series };
