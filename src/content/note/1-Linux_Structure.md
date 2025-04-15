@@ -1,5 +1,5 @@
 ---
-title: Lunux Structure
+title: Linux Structure
 seriesId: 0-linux
 publishDate: "2025-04-16T02:52:55Z"
 ---
