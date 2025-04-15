@@ -1,5 +1,6 @@
 ---
 title: Lunux Structure
+seriesId: 0-linux
 publishDate: "2025-04-16"
 ---
 
@@ -81,7 +82,7 @@ It follows five core principles:
 | System Utility  | Makes available to the user all of the operating system's functionality. |
 
 ## File System Hierarchy
-![alt text](../notes-images/filessystemhierarchy.png)
+![alt text](notes-images/filessystemhierarchy.png)
 
 | Path     | Description |
 |----------|-------------|
