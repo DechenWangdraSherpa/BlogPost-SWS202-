@@ -1,7 +1,8 @@
 ---
 title: Active Directory Basics
-seriesId: THM
+description: "TryHackMe Room"
 publishDate: "2025-04-16T20:53:00Z"
+tags: ["THM", "Active Directory"]
 ---
 
 # What is Active Directory?
@@ -31,7 +32,7 @@ In this session, we aim to understand the core concepts of Active Directory. By 
 # Windows Domain
 In a small business network with just a handful of computers and employees, it’s manageable to configure each machine manually—setting up user accounts and handling support directly on-site. However, as the organization grows—imagine 157 computers and 320 users spread across four offices—this manual approach quickly becomes impractical. To address this complexity, organizations turn to **Windows Domains**, which group users and computers under centralized administration. The key to this setup is **Active Directory (AD)**, a centralized repository that simplifies the management of users, computers, and policies across the network. At the heart of this system is the **Domain Controller (DC)**, a server that hosts and manages Active Directory services, enabling streamlined control, configuration, and security enforcement across all connected systems.
 
-![alt text](notes-images/bebe5dfec0208bf563d01fa2dd1fb7a7.png)
+![alt text](THMImage/bebe5dfec0208bf563d01fa2dd1fb7a7.png)
 
 ## Advantages of a Configured Windows Domain
 
