@@ -5,9 +5,7 @@ publishDate: "2025-04-17T23:09:10Z"
 tags: ["HTB", "LinuxMachine", "easyMachine"]
 ---
 
-<p align="center">
-  <img src="HTBImage/lame/logo.png" alt="alt text">
-</p>
+![alt text](HTBImage/lame/logo.png)
 
 # Enumeration
 ## Nmap Scan
