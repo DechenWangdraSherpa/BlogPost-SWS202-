@@ -2,7 +2,7 @@
 title: Active Directory Basics
 description: "TryHackMe Room"
 publishDate: "2025-04-16T20:53:00Z"
-tags: ["THM", "Active Directory"]
+tags: ["THM", "THMRoom"]
 ---
 
 # What is Active Directory?
