@@ -1,7 +1,7 @@
 ---
 title: 2Million (HACKTHEBOX)
 description: "This is a writeup for the machine 2million from hackthebox, which is a linux machine with difficulty easy." 
-publishDate: "2025-04-20T3:37:30Z"
+publishDate: "2025-04-20T03:37:30Z"
 tags: ["HTB", "LinuxMachine", "easyMachine"]
 ---
 
