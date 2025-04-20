@@ -146,6 +146,7 @@ Kali Linux. (n.d.). *smbmap*. Kali Tools. https://www.kali.org/tools/smbmap/
 
 ### Tools Used:
 
+- Nmap
 - Metasploit Modules
 - smbmap
 - searchsploit

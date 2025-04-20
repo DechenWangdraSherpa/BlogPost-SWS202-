@@ -333,3 +333,20 @@ As per the instructions on the GitHub page, enter the CVE-2023-0386 directory an
 
 
 
+# Learnings from this machine
+
+In this part of the 2Million HTB machine, I learned how to analyze web applications for hidden APIs, decode obfuscated JavaScript, and exploit misconfigured endpoints to escalate privileges. I gained initial access through command injection, reused leaked credentials to pivot via SSH, and identified a kernel vulnerability (CVE-2023-0386) for privilege escalation by reading system mails and checking kernel version.
+
+# Reference2023
+*2million.pdf*. (2023). Official HTB walkthrough.
+
+Kali linux tools, BurpSuite
+
+### Tools used:
+
+- Nmap
+- BurpSuite
+- smp
+- cyberchef
+- chatgpt
+
