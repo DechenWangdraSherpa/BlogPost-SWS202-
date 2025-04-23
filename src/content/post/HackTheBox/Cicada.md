@@ -153,3 +153,28 @@ can use it to directly log in to the account with Evil-WinRM by passing it as a 
 
 We have successfully rooted the machine and can navigate to the desktop to find the root flag under **C:\Users\Administrator\Desktop\root.txt**
 
+
+# Learnings
+
+* Credential Discovery – Find default/plaintext passwords in shared files.
+
+* User Enumeration – Use lookupsid to list domain users.
+
+* Password Spraying – Identify weak/reused passwords with crackmapexec.
+
+* Sensitive Metadata – AD description field can leak credentials.
+
+* Remote Shell – Use Evil-WinRM to access system with valid creds.
+
+* Privilege Escalation – Abuse SeBackupPrivilege to access protected files.
+
+* Registry Hive Dumping – Save SAM and SYSTEM hives using reg save.
+
+* Hash Dumping – Use secretsdump.py to extract NTLM password hashes.
+
+* Pass-the-Hash – Authenticate as Administrator using NTLM hash.
+
+# Reference
+
+Pho3. (2025, January 17). Cicada walkthrough (Document No. D25.100.319).
+(Machine author: theblxckcicada; Classification: Official; Difficulty: Easy)
