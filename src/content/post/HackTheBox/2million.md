@@ -230,7 +230,7 @@ Now it says email parameter is missing. Let's add this as well and try setting t
 
 `curl -X PUT http://2million.htb/api/v1/admin/settings/update --cookie "PHPSESSID=g4umtauona3ic7bipu5tf0l1ke" --header "Content-Type: application/json" --data '{"email":"train@2million.htb", "is_admin": '1'}' | jq`
 
-![alt text](HTBImage/2million/isadmintrue.png) [alt text](HTBImage/2million)
+![alt text](HTBImage/2million/isadmintrue.png)
 
 The above command seems to be successful as my information is returned and the `is_admin` variable is 1. 
 

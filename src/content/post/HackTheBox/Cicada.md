@@ -1,6 +1,6 @@
 ---
 title: Cicada (HACKTHEBOX)
-description: "This is a writeup for the machine Cicada from hackthebox, which is a Linux machine with difficulty easy." 
+description: "This is a writeup for the machine Cicada from hackthebox, which is a Windows machine with difficulty easy." 
 publishDate: "2025-04-23T07:10:10Z"
 tags: ["HTB", "WindowsMachine", "easyMachine"]
 ---
