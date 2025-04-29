@@ -1,7 +1,7 @@
 ---
 title: Strutted (HACKTHEBOX)
 description: "This is a writeup for the machine Strutted from hackthebox, which is a Linux machine with difficulty medium." 
-publishDate: "2025-04-26T09:2:10Z"
+publishDate: "2025-04-26T09:20:10Z"
 tags: ["HTB", "LinuxMachine", "MediumMachine"]
 ---
 

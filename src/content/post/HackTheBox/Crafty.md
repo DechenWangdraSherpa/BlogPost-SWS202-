@@ -1,7 +1,7 @@
 ---
 title: Crafty (HACKTHEBOX)
 description: "This is a writeup for the machine Crafty from hackthebox, which is a Windows machine with difficulty easy." 
-publishDate: "2025-04-24T07:2:10Z"
+publishDate: "2025-04-24T07:20:10Z"
 tags: ["HTB", "WindowsMachine", "easyMachine"]
 ---
 
