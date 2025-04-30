@@ -1,5 +1,5 @@
 ---
-title: 13-7-AD Groups
+title: 13-9-AD Groups
 seriesId: 13-Active-Directory
 publishDate: "2025-04-29T15:36:00Z"
 ---

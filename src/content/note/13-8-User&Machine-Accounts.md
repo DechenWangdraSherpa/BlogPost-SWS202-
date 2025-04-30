@@ -1,5 +1,5 @@
 ---
-title: 13-7-User & Machine Accounts 
+title: 13-8-User & Machine Accounts 
 seriesId: 13-Active-Directory
 publishDate: "2025-04-29T15:12:00Z"
 ---

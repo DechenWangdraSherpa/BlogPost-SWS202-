@@ -1,5 +1,5 @@
 ---
-title: 13-4-AD Functionality 
+title: 13-5-AD Functionality 
 seriesId: 13-Active-Directory
 publishDate: "2025-04-29T14:35:00Z"
 ---
