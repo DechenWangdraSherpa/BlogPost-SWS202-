@@ -4,3 +4,7 @@ description: "This is a writeup for the machine Resolute from hackthebox, which 
 publishDate: "2025-04-28T01:20:10Z"
 tags: ["HTB", "WindowsMachine", "MediumMachine"]
 ---
+
+# Enumeration
+## Nmap
+
